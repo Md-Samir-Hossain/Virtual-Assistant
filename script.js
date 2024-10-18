@@ -82,7 +82,7 @@ function takeCommand(command) {
         speak("I love you too, but as a friend.")
     }
     else if (command.includes('open calculator')) {
-        if(checkDevice()= true){
+        if(checkDevice() == true){
             speak("I can not open calculator in this device.")
         }else{
             speak(`Opening calculator.`);
