@@ -9,7 +9,7 @@ let charImg = document.getElementById('chrImg');
 
 function speak(text) {
     let text_speak = new SpeechSynthesisUtterance(text);
-    text_speak.rate = 0.9;
+    text_speak.rate = 1;
     text_speak.pitch = 1;
     text_speak.volume = 1;
     text_speak.lang = "en-GB";
@@ -26,6 +26,18 @@ recognition.onresult = (e) => {
     inputBox.innerHTML = script.toUpperCase();
     takeCommand(script.toLowerCase());
 }
+ let checkDevice = ()=>{
+    let userAgent = navigator.userAgent.toLocaleUpperCase()
+    // console.log(userAgent)
+    let android = userAgent.indexOf("android")
+    // console.log(android)
+    if(android>-1){
+        return true;
+    }else{
+        return false;
+    }
+}
+// console.log(checkDevice())
 
 button.addEventListener("click", () => {
     recognition.start()
@@ -66,18 +78,25 @@ function takeCommand(command) {
     else if (command.includes('who are you') || command.includes('who r u') || command.includes('hu r u')) {
         speak(`I am ${Name}. A virtual assistant created by Mr. Samir.`)
     }
+    else if(command == "i love you"){
+        speak("I love you too, but as a friend.")
+    }
     else if (command.includes('open calculator')) {
-        speak(`Opening calculator.`);
-        window.open("calculator://")
+        if(checkDevice()= true){
+            speak("I can not open calculator in this device.")
+        }else{
+            speak(`Opening calculator.`);
+            window.open("calculator://")
+        }
     }
-    else if (command.includes('open whatsapp')) {
-        speak(`Opening whatsapp.`);
-        window.open("whatsapp://")
-    }
-    else if (command.includes('open linkedin')) {
-        speak(`Opening linkedin.`);
-        window.open("linkedin://")
-    }
+    // else if (command.includes('open whatsapp')) {
+    //     speak(`Opening whatsapp.`);
+    //     window.open("whatsapp://")
+    // }
+    // else if (command.includes('open linkedin')) {
+    //     speak(`Opening linkedin.`);
+    //     window.open("linkedin://")
+    // }
     else if (command.includes('time')) {
         let time = new Date().toLocaleString(undefined,{hour:"numeric", minute:"numeric"})
         speak(time);
