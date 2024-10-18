@@ -1,5 +1,5 @@
 let charName = document.getElementById('name');
-const Name = `Deku`;
+const Name = `Mikasa`;
 charName.innerText = Name;
 let button = document.getElementById('btn');
 let buttonText = document.getElementById('btn-text');
@@ -9,10 +9,10 @@ let charImg = document.getElementById('chrImg');
 
 function speak(text) {
     let text_speak = new SpeechSynthesisUtterance(text);
-    text_speak.rate = 0.8;
+    text_speak.rate = 0.9;
     text_speak.pitch = 1;
     text_speak.volume = 1;
-    text_speak.lang = "en-US";
+    text_speak.lang = "en-GB";
     window.speechSynthesis.speak(text_speak);
 }
 

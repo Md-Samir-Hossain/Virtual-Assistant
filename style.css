@@ -18,7 +18,8 @@
 }
 body{
     position: relative;
-    background-image: url(Media-files/wallpaper-binary.jpg);
+    background-color: black;
+    background-image: radial-gradient(rgba(0, 140, 255, 0.25), black);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -217,6 +218,9 @@ main .input{
 @media (max-width: 426px) {
     .input{
         width: 100%;
+    }
+    .char-container #chrImg{
+        height: 70%;
     }
 }
 @media (min-width: 426px) {
