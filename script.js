@@ -1,18 +1,31 @@
 let charName = document.getElementById('name');
-const Name = `Mikasa`;
+const Name = `Deku`;
 charName.innerText = Name;
 let button = document.getElementById('btn');
 let buttonText = document.getElementById('btn-text');
 let voice = document.getElementById('loader');
 let inputBox = document.getElementById('input-box');
 let charImg = document.getElementById('chrImg');
+let charContainer = document.getElementById("char-container");
+
+let userAgent = navigator.userAgent.toLocaleUpperCase()
+// console.log(userAgent)
+let android = userAgent.indexOf("android");
+// console.log(android)
+
+if(android>-1){
+    Name = "Mikasa";
+    charImg.src = "Media-files/Blue-Fmodel-croped.png"
+}
 
 function speak(text) {
-    let text_speak = new SpeechSynthesisUtterance(text);
+    let text_speak = new SpeechSynthesisUtterance(text);  
     text_speak.rate = 1;
-    text_speak.pitch = 1;
+    text_speak.pitch = 1.2;
     text_speak.volume = 1;
-    text_speak.lang = "en-GB";
+    if(android>-1){
+        text_speak.lang = "en-GB";
+    }
     window.speechSynthesis.speak(text_speak);
 }
 
@@ -22,22 +35,10 @@ let recognition = new speechReco()
 recognition.onresult = (e) => {
     // console.log(e);
     let script = e.results[0][0].transcript;
-    console.log(script);
+    // console.log(script);
     inputBox.innerHTML = script.toUpperCase();
     takeCommand(script.toLowerCase());
 }
- let checkDevice = ()=>{
-    let userAgent = navigator.userAgent.toLocaleUpperCase()
-    // console.log(userAgent)
-    let android = userAgent.indexOf("android")
-    // console.log(android)
-    if(android>-1){
-        return true;
-    }else{
-        return false;
-    }
-}
-// console.log(checkDevice())
 
 button.addEventListener("click", () => {
     recognition.start()
@@ -78,31 +79,20 @@ function takeCommand(command) {
     else if (command.includes('who are you') || command.includes('who r u') || command.includes('hu r u')) {
         speak(`I am ${Name}. A virtual assistant created by Mr. Samir.`)
     }
-    else if(command == "i love you"){
-        speak("I love you too, but as a friend.")
-    }
     else if (command.includes('open calculator')) {
-        if(checkDevice()= true){
-            speak("I can not open calculator in this device.")
-        }else{
+        if (android > -1) {
+            speak("Sorry, I am unable to open calculator in this device.")
+        } else {
             speak(`Opening calculator.`);
             window.open("calculator://")
         }
     }
-    // else if (command.includes('open whatsapp')) {
-    //     speak(`Opening whatsapp.`);
-    //     window.open("whatsapp://")
-    // }
-    // else if (command.includes('open linkedin')) {
-    //     speak(`Opening linkedin.`);
-    //     window.open("linkedin://")
-    // }
     else if (command.includes('time')) {
-        let time = new Date().toLocaleString(undefined,{hour:"numeric", minute:"numeric"})
+        let time = new Date().toLocaleString(undefined, { hour: "numeric", minute: "numeric" })
         speak(time);
     }
     else if (command.includes('date')) {
-        let date = new Date().toLocaleString(undefined,{day:"numeric", month:"short"})
+        let date = new Date().toLocaleString(undefined, { day: "numeric", month: "short" })
         speak(date);
     }
     else if (command.includes("open")) {
