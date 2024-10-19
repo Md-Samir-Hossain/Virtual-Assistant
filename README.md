@@ -14,7 +14,7 @@ This project is a **Virtual Assistant** built using **HTML**, **CSS**, and **Jav
 
 ## Demo
 
-![Assistant Avatar](Media-files/Blue-Fmodel-croped.png)
+![Assistant Avatar](Media-files/Screenshot.png)
 
 ## How It Works
 
@@ -28,3 +28,8 @@ This project is a **Virtual Assistant** built using **HTML**, **CSS**, and **Jav
 - **"Open {website}"**: Opens a specific website.
 - **"Who are you?"**: Gives information about the assistant.
 - **"How can you help?"**: Describes the assistant's functionalities.
+
+## ALERT !
+
+Some browser does not support `SpeechRecognition` API, so it may not work properly in some devices/browsers.
+You can try out this virtual assistant here.- https://md-samir-hossain.github.io/Virtual-Assistant/
