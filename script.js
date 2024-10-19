@@ -1,5 +1,5 @@
 let charName = document.getElementById('name');
-const Name = `Deku`;
+const Name = `Mikasa`;
 charName.innerText = Name;
 let button = document.getElementById('btn');
 let buttonText = document.getElementById('btn-text');
@@ -8,26 +8,13 @@ let inputBox = document.getElementById('input-box');
 let charImg = document.getElementById('chrImg');
 let charContainer = document.getElementById("char-container");
 
-let userAgent = navigator.userAgent.toLocaleUpperCase()
-// console.log(userAgent)
-let android = userAgent.indexOf("android");
-// console.log(android)
-
-if(android>-1){
-    Name = "Mikasa";
-    charImg.src = "Media-files/Blue-Fmodel-croped.png"
-}
-
-charName.innerText = Name + android;
 
 function speak(text) {
     let text_speak = new SpeechSynthesisUtterance(text);  
     text_speak.rate = 1;
     text_speak.pitch = 1.2;
     text_speak.volume = 1;
-    if(android>-1){
-        text_speak.lang = "en-GB";
-    }
+    text_speak.lang = "en-GB";
     window.speechSynthesis.speak(text_speak);
 }
 
@@ -82,12 +69,8 @@ function takeCommand(command) {
         speak(`I am ${Name}. A virtual assistant created by Mr. Samir.`)
     }
     else if (command.includes('open calculator')) {
-        if (android > -1) {
-            speak("Sorry, I am unable to open calculator in this device.")
-        } else {
-            speak(`Opening calculator.`);
-            window.open("calculator://")
-        }
+        speak(`Opening calculator.`);
+        window.open("calculator://")
     }
     else if (command.includes('time')) {
         let time = new Date().toLocaleString(undefined, { hour: "numeric", minute: "numeric" })
