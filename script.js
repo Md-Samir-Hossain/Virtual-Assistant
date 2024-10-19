@@ -18,7 +18,7 @@ if(android>-1){
     charImg.src = "Media-files/Blue-Fmodel-croped.png"
 }
 
-Name = Name + android
+charName.innerText = Name + android;
 
 function speak(text) {
     let text_speak = new SpeechSynthesisUtterance(text);  
