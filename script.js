@@ -35,7 +35,7 @@ let recognition = new speechReco()
 recognition.onresult = (e) => {
     // console.log(e);
     let script = e.results[0][0].transcript;
-    // console.log(script);
+    console.log(script);
     inputBox.innerHTML = script.toUpperCase();
     takeCommand(script.toLowerCase());
 }
